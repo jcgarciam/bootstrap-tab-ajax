@@ -3,7 +3,7 @@
  author:jcgarciam [ad] gmail [dot] com
 */
 (function ($, window, undefined) {
-    $.fn.ajaxTab = function () {
+    $.fn.ajaxTab = function (tabId) {
         var $this = $(this);
         var tbCnt = $this.next("div.tab-content");
         var selector_no_hash = $this.selector.substr(1);
@@ -32,10 +32,15 @@
             var target = href.substr(hash);
             href = href.substr(0, hash);
               
-			$.get(href, function (data, statusText, jqXHR) {
-				$(target).html(data);
-			});			  
+            $.get(href, function (data, statusText, jqXHR) {
+	           $(target).html(data);
+            });			  
         });
-        $this.find('a:first').tab("show");
+        if(tabId === undefined || tabId === "" || tabId === null){
+            $this.find('a:first').tab("show");
+        }else{
+            $this.find('a'+tabId).tab("show");
+        }
+
     }
 })(jQuery, window, undefined);
