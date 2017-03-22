@@ -14,7 +14,7 @@
             div_tab_content.push("</div>");
             div_tab_content.push("</div>");
 
-            $this.parent().append(div_tab_content.join(""));
+            $this.after(div_tab_content.join(""));
         } else {
             tbCnt.find(".tab-pane").attr("id", selector_no_hash + "-content");
         };
@@ -33,8 +33,8 @@
             href = href.substr(0, hash);
               
             $.get(href, function (data, statusText, jqXHR) {
-	           $(target).html(data);
-            });			  
+                $(target).html(data);
+            });
         });
         if(tabId === undefined || tabId === "" || tabId === null){
             $this.find('a:first').tab("show");
